@@ -3,39 +3,97 @@ import { NgModule } from '@angular/core';
 import {RouterModule,Routes} from '@angular/router'  //necesario para implementar rutas 
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { HeaderClienteComponent } from './header/header-cliente/header-cliente.component';
-import { HeaderEmpleadoComponent } from './header/header-empleado/header-empleado.component';
-import { ContentComponent } from './content/content.component';
-import { ContentClienteComponent } from './content/content-cliente/content-cliente.component';
-import { ContentEmpleadoComponent } from './content/content-empleado/content-empleado.component';
-import { RevisionesComponent } from './content/content-empleado/revisiones/revisiones.component';
-import { VehiculosComponent } from './content/content-empleado/vehiculos/vehiculos.component';
-import { ClientesComponent } from './content/content-empleado/clientes/clientes.component';
+import { ClienteComponent } from './cliente/cliente.component';
+import { EmpleadoComponent } from './empleado/empleado.component';
+import { ClienteHeaderComponent } from './cliente/cliente-header/cliente-header.component';
+import { ClienteContentComponent } from './cliente/cliente-content/cliente-content.component';
+import { ClienteFooterComponent } from './cliente/cliente-footer/cliente-footer.component';
+import { EmpleadoHeaderComponent } from './empleado/empleado-header/empleado-header.component';
+import { EmpleadoContentComponent } from './empleado/empleado-content/empleado-content.component';
+import { EmpleadoFooterComponent } from './empleado/empleado-footer/empleado-footer.component';
+import { ReservaHoraComponent } from './cliente/cliente-content/reserva-hora/reserva-hora.component';
+import { ConsideracionesComponent } from './cliente/cliente-content/consideraciones/consideraciones.component';
+import { EmpleadoLoginComponent } from './empleado/empleado-login/empleado-login.component';
+import { RevisionesComponent } from './empleado/empleado-content/revisiones/revisiones.component';
+import { VehiculosComponent } from './empleado/empleado-content/vehiculos/vehiculos.component';
+import { ClientesComponent } from './empleado/empleado-content/clientes/clientes.component';
+import { ClienteFormComponent } from './empleado/empleado-content/clientes/cliente-form/cliente-form.component';
+import { RevisionFormComponent } from './empleado/empleado-content/revisiones/revision-form/revision-form.component';
+import { VehiculoFormComponent } from './empleado/empleado-content/vehiculos/vehiculo-form/vehiculo-form.component';
 
 const routes:Routes=[
-  {path:'',redirectTo:'/empleados',pathMatch:'full'},   //como pagina de inicio se debe dejar la vista para los clientes
-  {path:'inicio',component:ContentClienteComponent},
-  {path:'empleados',component:ContentEmpleadoComponent},
-  {path:'revisiones',component:RevisionesComponent},
-  {path:'vehiculos',component:VehiculosComponent},
-  {path:'clientes',component:ClientesComponent}
+  {path:'',redirectTo:'/inicio',pathMatch:'full'},   //como pagina de inicio se debe dejar la vista para los clientes
+  {path:'inicio',component:ClienteComponent,
+    children: [
+      {
+        path:'',
+        component:ClienteContentComponent
+      },
+      {
+        path:'reserva',
+        component:ReservaHoraComponent
+      },
+      {
+        path:'consideraciones',
+        component:ConsideracionesComponent
+      }
+    ]
+  },
+  {path:'personal',component:EmpleadoLoginComponent},
+  {path:'personal-inicio',component:EmpleadoComponent,
+    children:[
+      {
+        path:"",
+        component:EmpleadoContentComponent
+      },
+      {
+        path:'revisiones',
+        component:RevisionesComponent
+      },
+      {
+        path:'vehiculos',
+        component:VehiculosComponent
+      },
+      {
+        path:'clientes',
+        component:ClientesComponent
+      },
+      {
+        path:'clientes-form',
+        component:ClienteFormComponent
+      },
+      {
+        path:'revisiones-form',
+        component:RevisionFormComponent
+      },
+      {
+        path:'vehiculos-form',
+        component:VehiculoFormComponent
+      }
+    ]
+  }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    HeaderClienteComponent,
-    HeaderEmpleadoComponent,
-    ContentComponent,
-    ContentClienteComponent,
-    ContentEmpleadoComponent,
+    ClienteComponent,
+    EmpleadoComponent,
+    ClienteHeaderComponent,
+    ClienteContentComponent,
+    ClienteFooterComponent,
+    EmpleadoHeaderComponent,
+    EmpleadoContentComponent,
+    EmpleadoFooterComponent,
+    ReservaHoraComponent,
+    ConsideracionesComponent,
+    EmpleadoLoginComponent,
     RevisionesComponent,
     VehiculosComponent,
-    ClientesComponent
+    ClientesComponent,
+    ClienteFormComponent,
+    RevisionFormComponent,
+    VehiculoFormComponent,
   ],
   imports: [
     BrowserModule,

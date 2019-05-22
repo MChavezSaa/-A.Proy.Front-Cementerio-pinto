@@ -1,0 +1,55 @@
+<div class="container">
+  <h1>Revisiones</h1>
+  <div class="row my-3">
+    <div class="col-2 my-auto">
+      Filtrar por:
+    </div>
+    <div class="col-4 my-auto">
+      <input type="text">
+    </div>
+    <div class="col-6 text-right">
+        <button type="button" name="editar" class="btn btn-primary btn-lg" routerLink="/personal-inicio/revisiones-form">Agregar revisión</button>
+    </div>
+
+  </div>
+  <div class="card mb-3">
+    <div class="card-header text-center">
+      Lista de revisiones
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Id revisión</th>
+                <th scope="col">Patente</th>
+                <th scope="col">Nombre cliente</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Kilometraje</th>
+                <th scope="col">Gases</th>
+                <th scope="col">Visuales</th>
+                <th scope="col">Alineamiento</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let r of revisiones">
+                <th scope="row">{{r.idRevision}}</th>
+                <td>{{r.patente}}</td>
+                <td>{{r.nombreCliente}}</td>
+                <td>{{r.fecha}}</td>
+                <td>{{r.kilometraje}}</td>
+                <td>{{r.gases}}</td>
+                <td>{{r.visuales}}</td>
+                <td>{{r.alineamiento}}</td>
+                <td><button type="button" name="editar" class="btn btn-primary">editar</button></td>
+                <td><button type="button" name="eliminar" class="btn btn-danger">eliminar</button></td>
+              </tr>
+            </tbody>
+        </table>
+      </div><!--.table-responsive-->  
+    </div>
+  </div>
+
+</div> 
