@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ICliente } from './cliente';
+import {  Cliente } from './cliente';
+import { ClienteService } from './cliente.service';
+import Swal from 'sweetalert2' ;
 
 @Component({
   selector: 'app-clientes',
@@ -8,61 +10,48 @@ import { ICliente } from './cliente';
 })
 export class ClientesComponent implements OnInit {
 
-  clientes:ICliente[]=[
-    {
-      "rut":"11.123.123-1",
-      "nombre":"Steve",
-      "correo":"steve1994@gmail.com",
-      "telefono":88743321,
-      "cantidadRevisiones":5,
-    },
-    {
-      "rut":"11.123.123-1",
-      "nombre":"Juan",
-      "correo":"juan_varela@gmail.com",
-      "telefono":88743321,
-      "cantidadRevisiones":5,
-    },
-    {
-      "rut":"11.123.123-1",
-      "nombre":"Susan",
-      "correo":"susan_greenfield@gmail.com",
-      "telefono":88743321,
-      "cantidadRevisiones":5,
-    },
-    {
-      "rut":"11.123.123-1",
-      "nombre":"Penelope",
-      "correo":"penelope_11@gmail.com",
-      "telefono":88743321,
-      "cantidadRevisiones":5,
-    },
-    {
-      "rut":"11.123.123-1",
-      "nombre":"Frank",
-      "correo":"frank_kafka@gmail.com",
-      "telefono":88743321,
-      "cantidadRevisiones":5,
-    },
-    {
-      "rut":"11.123.123-1",
-      "nombre":"Victor",
-      "correo":"vic1998@gmail.com",
-      "telefono":88743321,
-      "cantidadRevisiones":5,
-    },
-    {
-      "rut":"11.123.123-1",
-      "nombre":"Sandra",
-      "correo":"sandra21@gmail.com",
-      "telefono":88743321,
-      "cantidadRevisiones":5,
-    },
-  ]
+  clientes:Cliente[];
 
-  constructor() { }
+  constructor(private clienteService:ClienteService) { }
 
   ngOnInit() {
+    this.clienteService.getClientes().subscribe(
+      clientes=> this.clientes = clientes
+    );
   }
-
+  
+  delete(cliente:Cliente):void{
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false,
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: 'Está seguro',
+      text: `¿Está seguro que desea eliminar al cliente ${cliente.nombre} ?`,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, eliminar!',
+      cancelButtonText: 'No, cancelar!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        this.clienteService.delete(cliente.rut).subscribe(
+          response=>{
+            this.clientes=this.clientes.filter(cli=>cli!==cliente)
+            swalWithBootstrapButtons.fire(
+              'Cliente Eliminado!',
+              `Cliente ${cliente.nombre}  eliminado con éxito.`,
+              'success'
+            )
+          }
+        )
+        
+      }
+    })
+  }
+  
 }

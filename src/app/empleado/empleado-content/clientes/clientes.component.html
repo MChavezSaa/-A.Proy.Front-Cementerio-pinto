@@ -37,8 +37,8 @@
                   <td>{{c.correo}}</td>
                   <td>{{c.telefono}}</td>
                   <td>{{c.cantidadRevisiones}}</td>
-                  <td><button type="button" name="editar" class="btn btn-primary">editar</button></td>
-                  <td><button type="button" name="eliminar" class="btn btn-danger">eliminar</button></td>
+                  <td><button type="button" name="editar" routerLink="'/personal-inicio/clientes-form',c.rut" class="btn btn-primary">editar</button></td>
+                  <td><button type="button" name="eliminar" class="btn btn-danger" (click)='delete(c)'>eliminar</button></td>
                 </tr>
               </tbody>
           </table>

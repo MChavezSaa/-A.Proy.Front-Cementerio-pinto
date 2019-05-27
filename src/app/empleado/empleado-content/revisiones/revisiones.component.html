@@ -43,8 +43,8 @@
                 <td>{{r.gases}}</td>
                 <td>{{r.visuales}}</td>
                 <td>{{r.alineamiento}}</td>
-                <td><button type="button" name="editar" class="btn btn-primary">editar</button></td>
-                <td><button type="button" name="eliminar" class="btn btn-danger">eliminar</button></td>
+                <td><button type="button" name="editar" routerLink="'/personal-inicio/revisiones-form',r.idRevision" class="btn btn-primary">editar</button></td>
+                <td><button type="button" name="eliminar" class="btn btn-danger" (click)='delete(r)'>eliminar</button></td>
               </tr>
             </tbody>
         </table>

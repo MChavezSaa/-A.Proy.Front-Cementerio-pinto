@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IRevision } from './revision';
+import { Revision } from './revision';
+import { RevisionService } from './revision.service';
+import Swal from 'sweetalert2' ;
 
 @Component({
   selector: 'app-revisiones',
@@ -8,81 +10,47 @@ import { IRevision } from './revision';
 })
 export class RevisionesComponent implements OnInit {
 
-  revisiones:IRevision[]=[
-    {
-      "idRevision":1,
-      "patente":"xx-11-22",
-      "nombreCliente":"Steve",
-      "fecha":"22/02/01",
-      "kilometraje":"2000km",
-      "gases":"ok",
-      "visuales":"ok",
-      "alineamiento":"ok"
-    },
-    {
-      "idRevision":2,
-      "patente":"yy-33-22",
-      "nombreCliente":"Juan",
-      "fecha":"22/02/01",
-      "kilometraje":"3000km",
-      "gases":"ok",
-      "visuales":"por revisar",
-      "alineamiento":"ok"
-    },
-    {
-      "idRevision":3,
-      "patente":"zz-21-12",
-      "nombreCliente":"Susan",
-      "fecha":"22/02/01",
-      "kilometraje":"10000km",
-      "gases":"ok",
-      "visuales":"ok",
-      "alineamiento":"ok"
-    },
-    {
-      "idRevision":4,
-      "patente":"xx-11-22",
-      "nombreCliente":"Penelope",
-      "fecha":"22/02/01",
-      "kilometraje":"2000km",
-      "gases":"ok",
-      "visuales":"ok",
-      "alineamiento":"ok"
-    },
-    {
-      "idRevision":5,
-      "patente":"xx-11-22",
-      "nombreCliente":"Frank",
-      "fecha":"22/02/01",
-      "kilometraje":"2000km",
-      "gases":"ok",
-      "visuales":"ok",
-      "alineamiento":"ok"
-    },
-    {
-      "idRevision":6,
-      "patente":"xx-11-22",
-      "nombreCliente":"Victor",
-      "fecha":"22/02/01",
-      "kilometraje":"2000km",
-      "gases":"ok",
-      "visuales":"ok",
-      "alineamiento":"ok"
-    },
-    {
-      "idRevision":7,
-      "patente":"xx-11-22",
-      "nombreCliente":"Sandra",
-      "fecha":"22/02/01",
-      "kilometraje":"2000km",
-      "gases":"ok",
-      "visuales":"ok",
-      "alineamiento":"ok"
-    },
-  ]
-  constructor() { }
+  revisiones:Revision[];
+
+  constructor(private revisionService:RevisionService) { }
 
   ngOnInit() {
+    this.revisionService.getRevisiones().subscribe(
+      revisiones=> this.revisiones = revisiones
+    );
   }
-
+  
+  delete(revision:Revision):void{
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false,
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: 'Está seguro',
+      text: `¿Está seguro que desea eliminar la revision numero: ${revision.idRevision} del vehiculo: ${revision.patente}?`,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, eliminar!',
+      cancelButtonText: 'No, cancelar!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        this.revisionService.delete(revision.idRevision).subscribe(
+          response=>{
+            this.revisiones=this.revisiones.filter(rev=>rev!==revision)
+            swalWithBootstrapButtons.fire(
+              'Revision Eliminada!',
+              `Revision ${revision.idRevision}, del vehículo ${revision.patente}  eliminado con éxito.`,
+              'success'
+            )
+          }
+        )
+        
+      }
+    })
+  }
 }

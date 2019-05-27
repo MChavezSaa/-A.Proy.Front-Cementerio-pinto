@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {RouterModule,Routes} from '@angular/router'  //necesario para implementar rutas 
+import {HttpClientModule} from '@angular/common/http'; 
+import {FormsModule} from '@angular/forms'
 
 import { AppComponent } from './app.component';
 import { ClienteComponent } from './cliente/cliente.component';
@@ -20,6 +22,7 @@ import { ClientesComponent } from './empleado/empleado-content/clientes/clientes
 import { ClienteFormComponent } from './empleado/empleado-content/clientes/cliente-form/cliente-form.component';
 import { RevisionFormComponent } from './empleado/empleado-content/revisiones/revision-form/revision-form.component';
 import { VehiculoFormComponent } from './empleado/empleado-content/vehiculos/vehiculo-form/vehiculo-form.component';
+import { ClienteService } from './empleado/empleado-content/clientes/cliente.service';
 
 const routes:Routes=[
   {path:'',redirectTo:'/inicio',pathMatch:'full'},   //como pagina de inicio se debe dejar la vista para los clientes
@@ -63,11 +66,23 @@ const routes:Routes=[
         component:ClienteFormComponent
       },
       {
+        path:'clientes-form/:rut',
+        component:ClienteFormComponent
+      },
+      {
         path:'revisiones-form',
         component:RevisionFormComponent
       },
       {
+        path:'revisiones-form/:idRevision',
+        component:RevisionFormComponent
+      },
+      {
         path:'vehiculos-form',
+        component:VehiculoFormComponent
+      },
+      {
+        path:'vehiculos-form/:idVehiculo',
         component:VehiculoFormComponent
       }
     ]
@@ -97,9 +112,11 @@ const routes:Routes=[
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)     //se le entrega nuestro arreglo con las rutas definidas
+    RouterModule.forRoot(routes),    //se le entrega nuestro arreglo con las rutas definidas
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [ClienteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

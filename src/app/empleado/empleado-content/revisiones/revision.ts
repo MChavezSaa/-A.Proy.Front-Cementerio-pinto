@@ -1,4 +1,4 @@
-export interface IRevision{
+export class Revision{
     idRevision:number;
     patente:string;
     nombreCliente:string;

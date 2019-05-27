@@ -1,4 +1,4 @@
-export interface ICliente{
+export class Cliente{
     rut:string;
     nombre:string;
     correo:string;
