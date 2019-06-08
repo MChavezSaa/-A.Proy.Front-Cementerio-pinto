@@ -12,7 +12,7 @@ import Swal from 'sweetalert2' ;
 })
 export class RevisionService {
 
-  private urlEndPoint:string='http://localhost:8080/api/clientes';    //url a la cual el backend envia los datos, 
+  private urlEndPoint:string='http://localhost:8080/api/revision';    //url a la cual el backend envia los datos, 
   private httpHeaders=new HttpHeaders({'Content-Type':'application/json'})
 
   constructor(private http: HttpClient, private router:Router) { }
@@ -26,7 +26,7 @@ export class RevisionService {
   getRevision(id):Observable<Revision>{      //solicita el servidor el cliente por rut(el servidor devuevle null en caso de no encontrar el cliente)
     return this.http.get<Revision>(`${this.urlEndPoint}/${id}`).pipe(  //revisar ruta del backend
       catchError(e=>{
-        this.router.navigate(['/revisiones']);
+        this.router.navigate(['/personal-inicio/revisiones']);
         console.error(e.error.mensaje);
         Swal.fire('Error al editar', e.error.mensaje,'error');
         return throwError(e);

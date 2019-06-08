@@ -10,13 +10,18 @@ import Swal from 'sweetalert2' ;
 })
 export class ClientesComponent implements OnInit {
 
+  _listFilter:string;
+  clientesFiltered:Cliente[];
   clientes:Cliente[];
 
   constructor(private clienteService:ClienteService) { }
 
   ngOnInit() {
-    this.clienteService.getClientes().subscribe(
-      clientes=> this.clientes = clientes
+    this.clienteService.getClientes().subscribe(clientes=>{
+       this.clientes = clientes;
+       this.clientesFiltered=clientes;
+    },
+    err=>console.log(err)
     );
   }
   
@@ -52,6 +57,26 @@ export class ClientesComponent implements OnInit {
         
       }
     })
+  }
+
+  get listFilter(): string{
+    return this._listFilter;
+  }
+
+  set listFilter(value:string){
+    this._listFilter=value;
+    //this.filterProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
+    this.clientesFiltered=this.listFilter ? this.performFilter(this.listFilter) : this.clientes;
+    console.log(this.clientesFiltered);
+  }
+
+  performFilter(filterBy:string): Cliente[]{
+    filterBy=filterBy.toLocaleLowerCase();
+    return this.clientes.filter((cliente: Cliente)=>
+      cliente.rut.toLocaleLowerCase().indexOf(filterBy) !== -1);
+    /*return this.productService.products.filter((product: Iproduct)=>
+      product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1);*/
+    
   }
   
 }

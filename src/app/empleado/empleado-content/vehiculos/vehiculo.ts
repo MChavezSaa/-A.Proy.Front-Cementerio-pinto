@@ -1,10 +1,10 @@
-export interface IVehiculo{
+export class Vehiculo{
     patente:string;
-    tipoVehiculo:string;
+    tipo_vehiculo:string;
     marca:string;
     modelo:string;
-    numeroMotor:number;
-    numeroChasis:number;
+    nro_motor:string;
+    nro_chasis:string;
     anio:number;
     color:string;
 }

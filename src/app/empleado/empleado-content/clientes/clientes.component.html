@@ -1,23 +1,32 @@
-<div class="container">
+<div class="container"><!--CONTENEDOR PRINCIPAL-->
+
+  <nav aria-label="breadcrumb"><!--MIGAS DE PAN-->
+    <ol class="breadcrumb bg-white pl-0">
+      <li class="breadcrumb-item"><a  [routerLink]="['/personal-inicio']" href="#">personal-inicio</a></li>
+      <li class="breadcrumb-item active" aria-current="page">clientes</li>
+    </ol>
+  </nav><!--FIN MIGAS DE PAN-->
+
     <h1>Clientes</h1>
-    <div class="row my-3">
+
+    <div class="row my-3"><!--SECCION PARA FILTRAR-->
       <div class="col-2 my-auto">
         Filtrar por:
       </div>
       <div class="col-4 my-auto">
-        <input type="text">
+        <input type="text" [(ngModel)]="listFilter">
       </div>
       <div class="col-6 text-right">
           <button type="button" name="editar" class="btn btn-primary btn-lg" routerLink="/personal-inicio/clientes-form">Agregar cliente</button>
       </div>
-  
-    </div>
-    <div class="card mb-3">
+    </div><!--FIN SECCION PARA FILTRAR-->
+
+    <div class="card mb-3"><!--CARD CONTENEDORA DE LA TABLA-->
       <div class="card-header text-center">
         Lista de clientes
       </div>
       <div class="card-body">
-        <div class="table-responsive">
+        <div class="table-responsive"><!--INICIO TABLA REVISIONES-->
           <table class="table table-hover">
               <thead class="thead-dark">
                 <tr>
@@ -31,7 +40,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let c of clientes">
+                <tr *ngFor="let c of clientesFiltered">
                   <td>{{c.rut}}</td>
                   <td>{{c.nombre}}</td>
                   <td>{{c.correo}}</td>
@@ -42,8 +51,8 @@
                 </tr>
               </tbody>
           </table>
-        </div><!--.table-responsive-->  
+        </div><!--FIN TABLA REVISIONES-->  
       </div>
-    </div>
+    </div><!--FIN CARD CONTENEDORA DE TABLA-->
   
-  </div> 
+  </div><!--FIN CONTENEDOR PRINCIPAL-->

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {RouterModule,Routes} from '@angular/router'  //necesario para implementar rutas 
 import {HttpClientModule} from '@angular/common/http'; 
-import {FormsModule} from '@angular/forms'
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 
 import { AppComponent } from './app.component';
 import { ClienteComponent } from './cliente/cliente.component';
@@ -82,7 +82,7 @@ const routes:Routes=[
         component:VehiculoFormComponent
       },
       {
-        path:'vehiculos-form/:idVehiculo',
+        path:'vehiculos-form/:patente',
         component:VehiculoFormComponent
       }
     ]
@@ -114,7 +114,8 @@ const routes:Routes=[
     BrowserModule,
     RouterModule.forRoot(routes),    //se le entrega nuestro arreglo con las rutas definidas
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [ClienteService],
   bootstrap: [AppComponent]

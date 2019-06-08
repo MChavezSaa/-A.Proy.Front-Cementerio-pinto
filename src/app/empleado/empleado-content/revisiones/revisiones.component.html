@@ -1,6 +1,15 @@
-<div class="container">
+<div class="container"><!--CONTENEDOR PRINCIPAL-->
+      
+  <nav aria-label="breadcrumb"><!--MIGAS DE PAN-->
+    <ol class="breadcrumb bg-white pl-0">
+      <li class="breadcrumb-item"><a  [routerLink]="['/personal-inicio']" href="#">personal-inicio</a></li>
+      <li class="breadcrumb-item active" aria-current="page">revisiones</li>
+    </ol>
+  </nav><!--FIN MIGAS DE PAN-->
+      
   <h1>Revisiones</h1>
-  <div class="row my-3">
+
+  <div class="row my-3"><!--SECCION PARA FILTRAR-->
     <div class="col-2 my-auto">
       Filtrar por:
     </div>
@@ -10,14 +19,14 @@
     <div class="col-6 text-right">
         <button type="button" name="editar" class="btn btn-primary btn-lg" routerLink="/personal-inicio/revisiones-form">Agregar revisión</button>
     </div>
+  </div><!--FIN SECCION PARA FILTRAR-->
 
-  </div>
-  <div class="card mb-3">
+  <div class="card mb-3"><!--CARD CONTENEDORA DE LA TABLA-->
     <div class="card-header text-center">
       Lista de revisiones
     </div>
     <div class="card-body">
-      <div class="table-responsive">
+      <div class="table-responsive"><!--INICIO TABLA REVISIONES-->
         <table class="table table-hover">
             <thead class="thead-dark">
               <tr>
@@ -48,8 +57,8 @@
               </tr>
             </tbody>
         </table>
-      </div><!--.table-responsive-->  
+      </div><!--FIN TABLA REVISIONES-->  
     </div>
-  </div>
+  </div><!--FIN CARD CONTENEDORA DE TABLA-->
 
-</div> 
+</div> <!--FIN CONTENEDOR PRINCIPAL-->

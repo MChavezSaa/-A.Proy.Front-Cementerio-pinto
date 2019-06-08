@@ -1,129 +1,166 @@
-<div class="container">
+<div class="container"><!--CONTENEDOR PRINCIPAL-->
+
+    <nav aria-label="breadcrumb"><!--MIGAS DE PAN-->
+      <ol class="breadcrumb bg-white pl-0">
+        <li class="breadcrumb-item"><a  [routerLink]="['/personal-inicio']" href="#">personal-inicio</a></li>
+        <li class="breadcrumb-item"><a  [routerLink]="['/personal-inicio/revisiones']" href="#">revisiones</a></li>
+        <li class="breadcrumb-item active" aria-current="page">formulario-revisiones</li>
+      </ol>
+    </nav><!--FIN MIGAS DE PAN-->
+
     <h1 class="my-3">{{titulo}}</h1>
-    <div class="card my-5">
+
+    <div class="card my-5"><!--CARD CONTENEDOR DEL FORMULARIO-->
       <div class="card-header">
         Ingrese los datos de la revisión
       </div>
-      <div class="card-body">
+      <div class="card-body"><!--CARD BODY-->
   
-          <form>
-            <div class="row">
-              <div class="col-6">
+          <form [formGroup]="formRevision" (ngSubmit)="saveData()" novalidate><!--FORMULARIO REVISION-->
+
+            <div class="row"><!--ROW-->
+              <div class="col-6"><!--COL-6-->
+
                 <h6 class="border-bottom my-2 pb-2">Datos generales</h6>
                 <div class="form-group row">
                   <label for="inputPatente3" class="col-sm-4 col-form-label">Patente</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="inputPatente3" [(ngModel)]="revision.patente" placeholder="Patente">
+                    <input type="text" class="form-control" id="inputPatente3" formControlName="patente" placeholder="Patente">
+                    <div *ngIf="formRevision.get('patente').errors && (formRevision.get('patente').touched
+                          || formRevision.get('patente').dirty)"
+                      class="alert alert-danger">Debe ingresar la patente
+                    </div>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="inputNombre3" class="col-sm-4 col-form-label">Nombre cliente</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="inputNombre3" [(ngModel)]="revision.nombreCliente" placeholder="Nombre">
+                    <input type="text" class="form-control" id="inputNombre3" formControlName="nombreCliente" placeholder="Nombre">
+                    <div *ngIf="formRevision.get('nombreCliente').errors && (formRevision.get('nombreCliente').touched
+                          || formRevision.get('nombreCliente').dirty)"
+                      class="alert alert-danger">Debe ingresar el nombre del cliente
+                    </div>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="example-date-input" class="col-4 col-form-label">Fecha</label>
                   <div class="col-8">
-                    <input class="form-control" type="date" value="2019-05-21" [(ngModel)]="revision.fecha" id="example-date-input">
+                    <input class="form-control" type="date" value="2019-05-21" formControlName="fecha" id="example-date-input">
+                    <div *ngIf="formRevision.get('fecha').errors && (formRevision.get('fecha').touched
+                          || formRevision.get('fecha').dirty)"
+                      class="alert alert-danger">Debe ingresar la fecha
+                    </div>
                   </div>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-10">
-                    <button class="btn btn-primary" role="button" (click)='create()' *ngIf="!revision.idRevision else elseBlock">Crear</button> <!--elseBlock posiciona otro template en caso de que !clietne.id, para utilizar solo 1 boton en el form-->
+                    <button class="btn btn-primary" type="submit" role="button" (click)='create()' [disabled]="!formRevision.valid" *ngIf="!revision.idRevision else elseBlock">Crear</button> <!--elseBlock posiciona otro template en caso de que !clietne.id, para utilizar solo 1 boton en el form-->
                     <ng-template #elseBlock>
                       <button class="btn btn-primary" role="button" (click)='update()' >Editar</button>
                     </ng-template>
                   </div>
                 </div>
-              </div><!--.col-6-->
-              <div class="col-6">
-                  <h6 class="border-bottom my-2 pb-2">Aspectos técnicos</h6>
-                  <div class="form-group row">
-                    <label for="kilometraje" class="col-sm-4 col-form-label">Kilometraje</label>
-                    <div class="col-sm-8">
-                      <input type="text" class="form-control" id="kilometraje" [(ngModel)]="revision.kilometraje" placeholder="kilometraje">
+
+              </div><!--FIN COL-6-->
+
+              <div class="col-6"><!--COL-6-->
+
+                <h6 class="border-bottom my-2 pb-2">Aspectos técnicos</h6>
+                <div class="form-group row">
+                  <label for="kilometraje" class="col-sm-4 col-form-label">Kilometraje</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="kilometraje" formControlName="kilometraje" placeholder="kilometraje">
+                    <div *ngIf="formRevision.get('kilometraje').errors && (formRevision.get('kilometraje').touched
+                          || formRevision.get('kilometraje').dirty)"
+                      class="alert alert-danger">Debe ingresar el kilometraje
                     </div>
                   </div>
-                  <fieldset class="form-group">
-                      <div class="row">
-                        <legend class="col-form-label col-sm-4 pt-0">Gases</legend>
-                        <div class="col-sm-8">
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gasesRadio" [(ngModel)]="revision.gases" id="gases-bueno" value="option1" checked>
-                            <label class="form-check-label" for="gases-bueno">
-                              Bueno
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios" [(ngModel)]="revision.gases" id="gases-reparacion" value="option2">
-                            <label class="form-check-label" for="gases-reparacion">
-                              Reparación
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios" [(ngModel)]="revision.gases" id="gases-cambio" value="option3">
-                            <label class="form-check-label" for="gases-cambio">
-                              Cambio
-                            </label>
-                          </div>
+                </div>
+
+                <fieldset class="form-group"><!--GASES-->
+                    <div class="row">
+                      <legend class="col-form-label col-sm-4 pt-0">Gases</legend>
+                      <div class="col-sm-8">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="gases" formControlName="gases" id="gases-bueno" value="bueno">
+                          <label class="form-check-label" for="gases-bueno">
+                            Bueno
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="gases" formControlName="gases" id="gases-reparacion" value="reparacion">
+                          <label class="form-check-label" for="gases-reparacion">
+                            Reparación
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="gases" formControlName="gases" id="gases-cambio" value="cambio">
+                          <label class="form-check-label" for="gases-cambio">
+                            Cambio
+                          </label>
                         </div>
                       </div>
-                  </fieldset><!--.form-group-->
-                  <fieldset class="form-group">
-                      <div class="row">
-                        <legend class="col-form-label col-sm-4 pt-0">Visuales</legend>
-                        <div class="col-sm-8">
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="visualesRadio" [(ngModel)]="revision.visuales" id="visuales-bueno" value="option1" checked>
-                            <label class="form-check-label" for="visuales-bueno">
-                              Bueno
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="visualesRadio" [(ngModel)]="revision.visuales" id="visuales-reparacion" value="option2">
-                            <label class="form-check-label" for="visuales-reparacion">
-                              Reparación
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="visualesRadio" [(ngModel)]="revision.visuales" id="visuales-cambio" value="option3">
-                            <label class="form-check-label" for="visuales-cambio">
-                              Cambio
-                            </label>
-                          </div>
+                    </div>
+                </fieldset><!--FIN GASES-->
+
+                <fieldset class="form-group"><!--VISUALES-->
+                    <div class="row">
+                      <legend class="col-form-label col-sm-4 pt-0">Visuales</legend>
+                      <div class="col-sm-8">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="visuales" formControlName="visuales" id="visuales-bueno" value="bueno">
+                          <label class="form-check-label" for="visuales-bueno">
+                            Bueno
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="visuales" formControlName="visuales" id="visuales-reparacion" value="reparacion">
+                          <label class="form-check-label" for="visuales-reparacion">
+                            Reparación
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="visuales" formControlName="visuales" id="visuales-cambio" value="cambio">
+                          <label class="form-check-label" for="visuales-cambio">
+                            Cambio
+                          </label>
                         </div>
                       </div>
-                  </fieldset><!--.form-group-->
-                  <fieldset class="form-group">
-                      <div class="row">
-                        <legend class="col-form-label col-sm-4 pt-0">Alineamiento</legend>
-                        <div class="col-sm-8">
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="alineamientoRadio" [(ngModel)]="revision.alineamiento" id="alineamiento-bueno" value="option1" checked>
-                            <label class="form-check-label" for="alineamiento-bueno">
-                              Bueno
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="alineamientoRadio" [(ngModel)]="revision.alineamiento" id="alineamiento-reparacion" value="option2">
-                            <label class="form-check-label" for="alineamiento-reparacion">
-                              Reparación
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="alineamientoRadio" [(ngModel)]="revision.alineamiento" id="alineamiento-cambio" value="option3">
-                            <label class="form-check-label" for="alineamiento-cambio">
-                              Cambio
-                            </label>
-                          </div>
+                    </div>
+                </fieldset><!--FIN VISUALES-->
+
+                <fieldset class="form-group"><!--ALINEAMIENTO-->
+                    <div class="row">
+                      <legend class="col-form-label col-sm-4 pt-0">Alineamiento</legend>
+                      <div class="col-sm-8">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="alineamiento" formControlName="alineamiento" id="alineamiento-bueno" value="bueno">
+                          <label class="form-check-label" for="alineamiento-bueno">
+                            Bueno
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="alineamiento" formControlName="alineamiento" id="alineamiento-reparacion" value="reparacion">
+                          <label class="form-check-label" for="alineamiento-reparacion">
+                            Reparación
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="alineamiento" formControlName="alineamiento" id="alineamiento-cambio" value="cambio">
+                          <label class="form-check-label" for="alineamiento-cambio">
+                            Cambio
+                          </label>
                         </div>
                       </div>
-                  </fieldset>
-              </div><!--.col-6-->
-            </div><!--.row-->
-          </form>
+                    </div>
+                </fieldset><!--FIN ALINEAMIENTO-->
+
+              </div><!--FIN COL-6-->
+            </div><!--FIN ROW-->
+
+          </form><!--FIN FORMULARIO REVISION-->
   
-      </div><!--.card-body-->
-    </div><!--.card-->
-  </div>  
+      </div><!--FIN CARD BODY-->
+    </div><!--FIN CARD CONTENEDORA FORMULARIO-->
+
+  </div><!--FIN CONTENEDOR PRINCIPAL-->

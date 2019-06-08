@@ -1,76 +1,124 @@
-<div class="container">
+<div class="container"><!--CONTENEDOR PRINCIPAL-->
+
+  <nav aria-label="breadcrumb"><!--MIGAS DE PAN-->
+    <ol class="breadcrumb bg-white pl-0">
+      <li class="breadcrumb-item"><a  [routerLink]="['/personal-inicio']" href="#">personal-inicio</a></li>
+      <li class="breadcrumb-item"><a  [routerLink]="['/personal-inicio/vehiculos']" href="#">vehiculos</a></li>
+      <li class="breadcrumb-item active" aria-current="page">formulario-vehiculos</li>
+    </ol>
+  </nav><!--FIN MIGAS DE PAN-->
+
     <h1 class="my-3">{{titulo}}</h1>
-    <div class="card my-5">
+
+    <div class="card my-5"><!--CARD CONTENEDOR DEL FORMULARIO-->
       <div class="card-header">
         Ingrese los datos del vehículo
       </div>
-      <div class="card-body">
+      <div class="card-body"><!--CARD BODY-->
   
-          <form>
-            <div class="row">
-              <div class="col-6">
+          <form [formGroup]="formVehiculo" (ngSubmit)="saveData()" novalidate> <!--FORMULARIO VEHICULO-->
+
+            <div class="row"><!--ROW-->
+              <div class="col-6"><!--COL-6-->
                 <h6 class="border-bottom my-2 pb-2">Datos generales</h6>
                 <div class="form-group row">
-                  <label for="inputPatente3" class="col-sm-4 col-form-label">Patente</label>
+                  <label for="inputPatente" class="col-sm-4 col-form-label">Patente</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="inputPatente3" placeholder="Patente">
+                    <input type="text" class="form-control" formControlName="patente" id="inputPatente" placeholder="Patente">
+                    <div *ngIf="formVehiculo.get('patente').errors && (formVehiculo.get('patente').touched
+                          || formVehiculo.get('patente').dirty)"
+                    class="alert alert-danger">La patente debe ser ingresada
+                    </div>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="inputTipo" class="col-sm-4 col-form-label">Tipo de vehículo</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="inputTipo" placeholder="Tipo de vehículo">
+                    <input type="text" class="form-control" formControlName="tipoVehiculo" id="inputTipo" placeholder="Tipo de vehículo">
+                    <div *ngIf="formVehiculo.get('patente').errors && (formVehiculo.get('tipoVehiculo').touched
+                          || formVehiculo.get('tipoVehiculo').dirty)"
+                    class="alert alert-danger">Debe especificar el tipo de vehiculo
+                    </div>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="inputMarca" class="col-sm-4 col-form-label">Marca</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="inputMarca" placeholder="Marca">
+                    <input type="text" class="form-control" formControlName="marca" id="inputMarca" placeholder="Marca">
+                    <div *ngIf="formVehiculo.get('patente').errors && (formVehiculo.get('marca').touched
+                          || formVehiculo.get('marca').dirty)"
+                    class="alert alert-danger">Debe ingresar la marca
+                    </div>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="inputModelo" class="col-sm-4 col-form-label">Modelo</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="inputModelo" placeholder="Modelo">
+                    <input type="text" class="form-control" formControlName="modelo" id="inputModelo" placeholder="Modelo">
+                    <div *ngIf="formVehiculo.get('patente').errors && (formVehiculo.get('modelo').touched
+                          || formVehiculo.get('modelo').dirty)"
+                    class="alert alert-danger">Debe ingresar el modelo del vehiculo
+                    </div>
                   </div>
                 </div>
                 
                 <div class="form-group row">
                   <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">Ingresar</button>
+                    <button type="submit" [disabled]="!formVehiculo.valid" (click)='create()' class="btn btn-primary" *ngIf="!vehiculo.patente else elseBlock">Ingresar</button>
+                    <ng-template #elseBlock>
+                      <button class="btn btn-primary" role="button" (click)='update()' >Editar</button>
+                    </ng-template>
                   </div>
                 </div>
-              </div><!--.col-6-->
-              <div class="col-6">
+              </div><!--.FIN COL-6-->
+              <div class="col-6"><!--COL-6-->
                   <h6 class="border-bottom my-2 pb-2">Aspectos técnicos</h6>
                   <div class="form-group row">
                     <label for="numeroMotor" class="col-sm-4 col-form-label">Número motor</label>
                     <div class="col-sm-8">
-                      <input type="number" class="form-control" id="numeroMotor" placeholder="Número motor">
+                      <input type="number" class="form-control" formControlName="numeroMotor" id="numeroMotor" placeholder="Número motor">
+                      <div *ngIf="formVehiculo.get('patente').errors && (formVehiculo.get('numeroMotor').touched
+                          || formVehiculo.get('numeroMotor').dirty)"
+                      class="alert alert-danger">Debe especificar el numero del motor
+                      </div>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="numeroChasis" class="col-sm-4 col-form-label">Número chasis</label>
                     <div class="col-sm-8">
-                      <input type="number" class="form-control" id="numeroChasis" placeholder="Número chasis">
+                      <input type="number" class="form-control" formControlName="numeroChasis" id="numeroChasis" placeholder="Número chasis">
+                      <div *ngIf="formVehiculo.get('patente').errors && (formVehiculo.get('numeroChasis').touched
+                          || formVehiculo.get('numeroChasis').dirty)"
+                      class="alert alert-danger">Debe especificar el numero de chasis
+                      </div>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="anioVehiculo" class="col-sm-4 col-form-label">Año</label>
                     <div class="col-sm-8">
-                      <input type="number" class="form-control" id="anioVehiculo" placeholder="Año vehiculo">
+                      <input type="number" class="form-control" formControlName="anio" id="anioVehiculo" placeholder="Año vehiculo">
+                      <div *ngIf="formVehiculo.get('patente').errors && (formVehiculo.get('anio').touched
+                          || formVehiculo.get('anio').dirty)"
+                      class="alert alert-danger">Ingrese un año valido
+                      </div>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="colorVehiculo" class="col-sm-4 col-form-label">Color</label>
                     <div class="col-sm-8">
-                      <input type="number" class="form-control" id="colorVehiculo" placeholder="Color vehículo">
+                      <input type="text" class="form-control" formControlName="color" id="colorVehiculo" placeholder="Color vehículo">
+                      <div *ngIf="formVehiculo.get('patente').errors && (formVehiculo.get('color').touched
+                          || formVehiculo.get('color').dirty)"
+                      class="alert alert-danger">Especifique el color del vehiculo
+                      </div>
                     </div>
                   </div>
-              </div><!--.col-6-->
-            </div><!--.row-->
-          </form>
+              </div><!--FIN COL-6-->
+            </div><!--FIN ROW-->
+
+          </form><!--FIN FORMULARIO VEHICULO-->
   
-      </div><!--.card-body-->
-    </div><!--.card-->
-  </div>  
+      </div><!--FIN CARD BODY-->
+    </div><!--FIN CARD CONTENEDORA FORMULARIO-->
+
+  </div><!--FIN CONTENEDOR PRINCIPAL-->

@@ -1,23 +1,32 @@
-<div class="container">
+<div class="container"><!--CONTENEDOR PRINCIPAL-->
+
+  <nav aria-label="breadcrumb"><!--MIGAS DE PAN-->
+    <ol class="breadcrumb bg-white pl-0">
+      <li class="breadcrumb-item"><a  [routerLink]="['/personal-inicio']" href="#">personal-inicio</a></li>
+      <li class="breadcrumb-item active" aria-current="page">vehiculos</li>
+    </ol>
+  </nav><!--FIN MIGAS DE PAN-->
+
     <h1>Vehículos</h1>
-    <div class="row my-3">
+
+    <div class="row my-3"><!--SECCION PARA FILTRAR-->
       <div class="col-2 my-auto">
-        Filtrar por:
+        Filtrar por patente:
       </div>
       <div class="col-4 my-auto">
-        <input type="text">
+        <input type="text" [(ngModel)]="listFilter">
       </div>
       <div class="col-6 text-right">
           <button type="button" name="editar" class="btn btn-primary btn-lg" routerLink="/personal-inicio/vehiculos-form">Agregar vehículo</button>
       </div>
-  
-    </div>
-    <div class="card mb-3">
+    </div><!--FIN SECCION PARA FILTRAR-->
+
+    <div class="card mb-3"><!--CARD CONTENEDORA DE LA TABLA-->
       <div class="card-header text-center">
         Lista de vehículos
       </div>
       <div class="card-body">
-        <div class="table-responsive">
+        <div class="table-responsive"><!--INICIO TABLA REVISIONES-->
           <table class="table table-hover">
               <thead class="thead-dark">
                 <tr>
@@ -34,22 +43,22 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let v of vehiculos">
+                <tr *ngFor="let v of vehiculosFiltered">
                   <th scope="row">{{v.patente}}</th>
-                  <td>{{v.tipoVehiculo}}</td>
+                  <td>{{v.tipo_vehiculo}}</td>
                   <td>{{v.marca}}</td>
                   <td>{{v.modelo}}</td>
-                  <td>{{v.numeroMotor}}</td>
-                  <td>{{v.numeroChasis}}</td>
+                  <td>{{v.nro_motor}}</td>
+                  <td>{{v.nro_chasis}}</td>
                   <td>{{v.anio}}</td>
                   <td>{{v.color}}</td>
-                  <td><button type="button" name="editar" class="btn btn-primary">editar</button></td>
+                  <td><button type="button" name="editar" [routerLink]="['/personal-inicio/vehiculos-form/',v.patente]" class="btn btn-primary">editar</button></td>
                   <td><button type="button" name="eliminar" class="btn btn-danger">eliminar</button></td>
                 </tr>
               </tbody>
           </table>
-        </div><!--.table-responsive-->  
+        </div><!--FIN TABLA REVISIONES-->  
       </div>
-    </div>
+    </div><!--FIN CARD CONTENEDORA DE TABLA-->
   
-  </div> 
+</div> <!--FIN CONTENEDOR PRINCIPAL-->
