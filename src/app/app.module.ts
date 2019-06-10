@@ -66,7 +66,7 @@ const routes:Routes=[
         component:ClienteFormComponent
       },
       {
-        path:'clientes-form/:rut',
+        path:'clientes-form/:id',
         component:ClienteFormComponent
       },
       {

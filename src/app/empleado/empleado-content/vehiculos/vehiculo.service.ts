@@ -22,6 +22,7 @@ export class VehiculoService {
       map((response)=>response as Vehiculo[])
     )
   }
+  
   getVehiculo(patente):Observable<Vehiculo>{      //solicita el servidor el cliente por rut(el servidor devuevle null en caso de no encontrar el cliente)
     return this.http.get<Vehiculo>(`${this.urlEndPoint}/${patente}`).pipe(  //revisar ruta del backend
       catchError(e=>{
@@ -35,7 +36,7 @@ export class VehiculoService {
 
   create(vehiculo:Vehiculo):Observable<Vehiculo>{  //el cliente es enviado desde cliente-form.component.ts
     return this.http.post(this.urlEndPoint+"saveVehicle",vehiculo,{headers:this.httpHeaders}).pipe(
-      map((response:any) => response.revision as Vehiculo),
+      map((response:any) => response.vehiculo as Vehiculo),
       catchError(e=>{
         console.error(e.error.mensaje);
         Swal.fire('Error al crear el vehiculo', e.error.mensaje,'error');

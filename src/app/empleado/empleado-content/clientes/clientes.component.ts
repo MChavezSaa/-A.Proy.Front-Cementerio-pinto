@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {  Cliente } from './cliente';
 import { ClienteService } from './cliente.service';
 import Swal from 'sweetalert2' ;
+import {Router,ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-clientes',
@@ -14,7 +15,7 @@ export class ClientesComponent implements OnInit {
   clientesFiltered:Cliente[];
   clientes:Cliente[];
 
-  constructor(private clienteService:ClienteService) { }
+  constructor(private clienteService:ClienteService, private router:Router) { }
 
   ngOnInit() {
     this.clienteService.getClientes().subscribe(clientes=>{
@@ -44,14 +45,15 @@ export class ClientesComponent implements OnInit {
       reverseButtons: true
     }).then((result) => {
       if (result.value) {
-        this.clienteService.delete(cliente.rut).subscribe(
+        this.clienteService.delete(cliente.id).subscribe(
           response=>{
-            this.clientes=this.clientes.filter(cli=>cli!==cliente)
+            this.clientesFiltered=this.clientes.filter(cli=>cli!==cliente)
             swalWithBootstrapButtons.fire(
               'Cliente Eliminado!',
               `Cliente ${cliente.nombre}  eliminado con éxito.`,
               'success'
             )
+            
           }
         )
         

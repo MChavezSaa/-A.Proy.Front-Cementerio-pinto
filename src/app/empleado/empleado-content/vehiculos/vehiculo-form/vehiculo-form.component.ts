@@ -48,6 +48,9 @@ export class VehiculoFormComponent implements OnInit {
   }
 
   public create():void{
+    /*let json=JSON.stringify(this.vehiculo);
+    console.log(this.vehiculo);
+    console.log(json);*/
     this.vehiculoService.create(this.vehiculo)
       .subscribe(vehiculo => {     //para acceder directo al cliente se hizo una conversion manual en cliente.service de response a cliente, en update se hizo de la otra manera
         this.router.navigate(['/personal-inicio/vehiculos'])   //redirije a /clientes                            //subscribe ejecuta una accion luego de crear el cliente, en este caso redirije a la lista de clientes
@@ -66,7 +69,7 @@ export class VehiculoFormComponent implements OnInit {
 
 
   saveData(){
-    console.log(this.formVehiculo.value);
+    
     this.vehiculo.patente=this.formVehiculo.value.patente;
     this.vehiculo.tipo_vehiculo=this.formVehiculo.value.tipoVehiculo;
     this.vehiculo.modelo=this.formVehiculo.value.modelo;

@@ -35,7 +35,7 @@
                   <label for="inputTipo" class="col-sm-4 col-form-label">Tipo de vehículo</label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control" formControlName="tipoVehiculo" id="inputTipo" placeholder="Tipo de vehículo">
-                    <div *ngIf="formVehiculo.get('patente').errors && (formVehiculo.get('tipoVehiculo').touched
+                    <div *ngIf="formVehiculo.get('tipoVehiculo').errors && (formVehiculo.get('tipoVehiculo').touched
                           || formVehiculo.get('tipoVehiculo').dirty)"
                     class="alert alert-danger">Debe especificar el tipo de vehiculo
                     </div>
@@ -45,7 +45,7 @@
                   <label for="inputMarca" class="col-sm-4 col-form-label">Marca</label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control" formControlName="marca" id="inputMarca" placeholder="Marca">
-                    <div *ngIf="formVehiculo.get('patente').errors && (formVehiculo.get('marca').touched
+                    <div *ngIf="formVehiculo.get('marca').errors && (formVehiculo.get('marca').touched
                           || formVehiculo.get('marca').dirty)"
                     class="alert alert-danger">Debe ingresar la marca
                     </div>
@@ -55,7 +55,7 @@
                   <label for="inputModelo" class="col-sm-4 col-form-label">Modelo</label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control" formControlName="modelo" id="inputModelo" placeholder="Modelo">
-                    <div *ngIf="formVehiculo.get('patente').errors && (formVehiculo.get('modelo').touched
+                    <div *ngIf="formVehiculo.get('modelo').errors && (formVehiculo.get('modelo').touched
                           || formVehiculo.get('modelo').dirty)"
                     class="alert alert-danger">Debe ingresar el modelo del vehiculo
                     </div>
@@ -76,7 +76,7 @@
                   <div class="form-group row">
                     <label for="numeroMotor" class="col-sm-4 col-form-label">Número motor</label>
                     <div class="col-sm-8">
-                      <input type="number" class="form-control" formControlName="numeroMotor" id="numeroMotor" placeholder="Número motor">
+                      <input type="text" class="form-control" formControlName="numeroMotor" id="numeroMotor" placeholder="Número motor">
                       <div *ngIf="formVehiculo.get('patente').errors && (formVehiculo.get('numeroMotor').touched
                           || formVehiculo.get('numeroMotor').dirty)"
                       class="alert alert-danger">Debe especificar el numero del motor
@@ -86,7 +86,7 @@
                   <div class="form-group row">
                     <label for="numeroChasis" class="col-sm-4 col-form-label">Número chasis</label>
                     <div class="col-sm-8">
-                      <input type="number" class="form-control" formControlName="numeroChasis" id="numeroChasis" placeholder="Número chasis">
+                      <input type="text" class="form-control" formControlName="numeroChasis" id="numeroChasis" placeholder="Número chasis">
                       <div *ngIf="formVehiculo.get('patente').errors && (formVehiculo.get('numeroChasis').touched
                           || formVehiculo.get('numeroChasis').dirty)"
                       class="alert alert-danger">Debe especificar el numero de chasis

@@ -1,7 +1,8 @@
 export class Cliente{
+    id:number;
     rut:string;
     nombre:string;
-    correo:string;
     telefono:number;
-    cantidadRevisiones:number;
+    correo:string;
+    
 }

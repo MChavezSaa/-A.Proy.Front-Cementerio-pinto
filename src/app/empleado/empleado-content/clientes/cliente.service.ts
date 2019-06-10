@@ -12,6 +12,8 @@ import Swal from 'sweetalert2' ;
 export class ClienteService {
 
   private urlEndPoint:string='http://localhost:8080/api/';    //url a la cual el backend envia los datos, 
+  private urlEndPoint2:string='http://localhost:8080/api/clientes/';
+  private urlEndPoint3:string='http://localhost:8080/api/DeleteClientes/';
   private httpHeaders=new HttpHeaders({'Content-Type':'application/json'})
 
   constructor(private http: HttpClient, private router:Router) { }
@@ -23,8 +25,8 @@ export class ClienteService {
     )
    
   }
-  getCliente(rut):Observable<Cliente>{      //solicita el servidor el cliente por rut(el servidor devuevle null en caso de no encontrar el cliente)
-    return this.http.get<Cliente>(`${this.urlEndPoint}/${rut}`).pipe(  //revisar ruta del backend
+  getCliente(id):Observable<Cliente>{      //solicita el servidor el cliente por rut(el servidor devuevle null en caso de no encontrar el cliente)
+    return this.http.get<Cliente>(`${this.urlEndPoint2}${id}`).pipe(  //revisar ruta del backend
       catchError(e=>{
         this.router.navigate(['/personal-inicio/clientes']);
         console.error(e.error.mensaje);
@@ -44,8 +46,8 @@ export class ClienteService {
     );
   }
 
-  update(cliente:Cliente):Observable<any>{
-    return this.http.put<any>(`${this.urlEndPoint}/${cliente.rut}`,cliente,{headers:this.httpHeaders}).pipe(
+  update(cliente:Cliente, id:number):Observable<any>{
+    return this.http.put<any>(`${this.urlEndPoint}update/${id}`,cliente,{headers:this.httpHeaders}).pipe(
       catchError(e=>{
         console.error(e.error.mensaje);
         Swal.fire('Error al editar el cliente', e.error.mensaje,'error');
@@ -55,8 +57,8 @@ export class ClienteService {
   }
 
   
-  delete(rut:string):Observable<Cliente>{
-    return this.http.delete<Cliente>(`${this.urlEndPoint}/${rut}`,{headers:this.httpHeaders}).pipe(
+  delete(id:number):Observable<Cliente>{
+    return this.http.delete<Cliente>(`${this.urlEndPoint3}${id}`,{headers:this.httpHeaders}).pipe(
       catchError(e=>{
         console.error(e.error.mensaje);
         Swal.fire('Error al eliminar el cliente', e.error.mensaje,'error');
