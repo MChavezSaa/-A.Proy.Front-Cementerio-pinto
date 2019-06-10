@@ -1,4 +1,5 @@
 export class Vehiculo{
+    id:number;
     patente:string;
     tipo_vehiculo:string;
     marca:string;

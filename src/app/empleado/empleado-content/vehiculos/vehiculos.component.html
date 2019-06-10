@@ -52,8 +52,8 @@
                   <td>{{v.nro_chasis}}</td>
                   <td>{{v.anio}}</td>
                   <td>{{v.color}}</td>
-                  <td><button type="button" name="editar" [routerLink]="['/personal-inicio/vehiculos-form/',v.patente]" class="btn btn-primary">editar</button></td>
-                  <td><button type="button" name="eliminar" class="btn btn-danger">eliminar</button></td>
+                  <td><button type="button" name="editar" [routerLink]="['/personal-inicio/vehiculos-form/',v.id]" class="btn btn-primary">editar</button></td>
+                  <td><button type="button" name="eliminar" class="btn btn-danger" (click)="delete(v)">eliminar</button></td>
                 </tr>
               </tbody>
           </table>

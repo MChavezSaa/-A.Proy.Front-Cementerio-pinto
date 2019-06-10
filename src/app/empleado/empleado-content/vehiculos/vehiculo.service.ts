@@ -12,6 +12,8 @@ import Swal from 'sweetalert2' ;
 export class VehiculoService {
 
   private urlEndPoint:string='http://localhost:8080/';    //url a la cual el backend envia los datos, 
+  private urlEndPoint2:string="http://localhost:8080/update/";
+  private urlEndPoint3:string='http://localhost:8080/deleteVehicle/';
   private httpHeaders=new HttpHeaders({'Content-Type':'application/json'})
 
   constructor(private http: HttpClient, private router:Router) { }
@@ -23,8 +25,8 @@ export class VehiculoService {
     )
   }
   
-  getVehiculo(patente):Observable<Vehiculo>{      //solicita el servidor el cliente por rut(el servidor devuevle null en caso de no encontrar el cliente)
-    return this.http.get<Vehiculo>(`${this.urlEndPoint}/${patente}`).pipe(  //revisar ruta del backend
+  getVehiculo(id):Observable<Vehiculo>{      //solicita el servidor el cliente por rut(el servidor devuevle null en caso de no encontrar el cliente)
+    return this.http.get<Vehiculo>(`${this.urlEndPoint}vehicle/${id}`).pipe(  //revisar ruta del backend
       catchError(e=>{
         //this.router.navigate(['/personal-inicio/vehiculos']);  //desactivar por ahora para pruebas
         console.error(e.error.mensaje);
@@ -45,8 +47,8 @@ export class VehiculoService {
     );
   }
 
-  update(vehiculo:Vehiculo):Observable<any>{
-    return this.http.put<any>(`${this.urlEndPoint}/${vehiculo.patente}`,vehiculo,{headers:this.httpHeaders}).pipe(
+  update(vehiculo:Vehiculo,id:number):Observable<any>{
+    return this.http.put<any>(`${this.urlEndPoint2}${id}`,vehiculo,{headers:this.httpHeaders}).pipe(
       catchError(e=>{
         console.error(e.error.mensaje);
         Swal.fire('Error al editar el vehiculo', e.error.mensaje,'error');
@@ -55,8 +57,8 @@ export class VehiculoService {
     );
   }
 
-  delete(patente):Observable<Vehiculo>{
-    return this.http.delete<Vehiculo>(`${this.urlEndPoint}/${patente}`,{headers:this.httpHeaders}).pipe(
+  delete(id):Observable<Vehiculo>{
+    return this.http.delete<Vehiculo>(`${this.urlEndPoint3}${id}`,{headers:this.httpHeaders}).pipe(
       catchError(e=>{
         console.error(e.error.mensaje);
         Swal.fire('Error al eliminar el vehiculo', e.error.mensaje,'error');

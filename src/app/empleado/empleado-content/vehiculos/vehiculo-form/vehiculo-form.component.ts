@@ -23,11 +23,11 @@ export class VehiculoFormComponent implements OnInit {
     ) { 
     this.formVehiculo= this.formBuilder.group({
       patente:['',[Validators.required,]],
-      tipoVehiculo:['',[Validators.required]],
+      tipo_vehiculo:['',[Validators.required]],
       marca:['',[Validators.required]],
       modelo:['',[Validators.required]],
-      numeroMotor:['',[Validators.required,Validators.min(0)]],
-      numeroChasis:['',[Validators.required,Validators.min(0)]],
+      nro_motor:['',[Validators.required,Validators.min(0)]],
+      nro_chasis:['',[Validators.required,Validators.min(0)]],
       anio:['',[Validators.required,Validators.min(0)]],
       color:['',[Validators.required]]
     })
@@ -38,9 +38,9 @@ export class VehiculoFormComponent implements OnInit {
   }
   public cargarVehiculo():void{    //funcion para colocar los datos del cliente en el formulario al actualizar (debe invocarse en ngOnInit)
     this.activatedRoute.params.subscribe(params=>{  //mira los parametros de la url y con el parametro obtiene el cliente de la clase service
-      let patente = params['patente']
-      if(patente){
-        this.vehiculoService.getVehiculo(patente).subscribe((vehiculo)=>this.vehiculo=vehiculo) //al obtener el cliente de la clase service, lo guarda en el atributo de esta clase cliente y desde ngOnInit invoca esta funcion para cargar los datos en el formulario
+      let id = params['id'];
+      if(id){
+        this.vehiculoService.getVehiculo(id).subscribe((vehiculo)=>this.vehiculo=vehiculo) //al obtener el cliente de la clase service, lo guarda en el atributo de esta clase cliente y desde ngOnInit invoca esta funcion para cargar los datos en el formulario
         console.log(this.vehiculo);
       }
     })
@@ -48,10 +48,7 @@ export class VehiculoFormComponent implements OnInit {
   }
 
   public create():void{
-    /*let json=JSON.stringify(this.vehiculo);
-    console.log(this.vehiculo);
-    console.log(json);*/
-    this.vehiculoService.create(this.vehiculo)
+    this.vehiculoService.create(this.formVehiculo.value)
       .subscribe(vehiculo => {     //para acceder directo al cliente se hizo una conversion manual en cliente.service de response a cliente, en update se hizo de la otra manera
         this.router.navigate(['/personal-inicio/vehiculos'])   //redirije a /clientes                            //subscribe ejecuta una accion luego de crear el cliente, en este caso redirije a la lista de clientes
         Swal.fire('Nuevo vehiculo', `vehiculo con patente:${vehiculo.patente} creada con Exito`, 'success')    
@@ -60,10 +57,10 @@ export class VehiculoFormComponent implements OnInit {
   }
   
   public update():void{
-    this.vehiculoService.update(this.vehiculo)
+    this.vehiculoService.update(this.formVehiculo.value,this.vehiculo.id)
     .subscribe(json=>{   //el objeto que retorna el backend al crear un cliente es de tipo json, en donde vienen dos objetos uno es el cliente y el otro el mensaje de exito
       this.router.navigate(['/personal-inicio/vehiculos'])
-      Swal.fire('Revision Actualizada', `vehiculo con patente${json.vehiculo.patente} Actualizado con Exito`, 'success')  
+      Swal.fire('Revision Actualizada', `vehiculo con patente ${json.patente} Actualizado con Exito`, 'success')  
     })
   }
 
@@ -71,13 +68,13 @@ export class VehiculoFormComponent implements OnInit {
   saveData(){
     
     this.vehiculo.patente=this.formVehiculo.value.patente;
-    this.vehiculo.tipo_vehiculo=this.formVehiculo.value.tipoVehiculo;
+    this.vehiculo.tipo_vehiculo=this.formVehiculo.value.tipo_vehiculo;
     this.vehiculo.modelo=this.formVehiculo.value.modelo;
     this.vehiculo.marca=this.formVehiculo.value.marca;
     this.vehiculo.anio=this.formVehiculo.value.anio;
     this.vehiculo.color=this.formVehiculo.value.color;
-    this.vehiculo.nro_chasis=this.formVehiculo.value.numeroChasis;
-    this.vehiculo.nro_motor=this.formVehiculo.value.numeroMotor;
+    this.vehiculo.nro_chasis=this.formVehiculo.value.nro_chasis;
+    this.vehiculo.nro_motor=this.formVehiculo.value.nro_motor;
     console.log(this.vehiculo);
     this.formVehiculo.reset();
   }

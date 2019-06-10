@@ -82,7 +82,7 @@ const routes:Routes=[
         component:VehiculoFormComponent
       },
       {
-        path:'vehiculos-form/:patente',
+        path:'vehiculos-form/:id',
         component:VehiculoFormComponent
       }
     ]

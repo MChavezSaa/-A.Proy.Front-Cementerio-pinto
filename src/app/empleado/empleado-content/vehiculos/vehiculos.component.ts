@@ -46,9 +46,9 @@ export class VehiculosComponent implements OnInit {
       reverseButtons: true
     }).then((result) => {
       if (result.value) {
-        this.vehiculoService.delete(vehiculo.patente).subscribe(
+        this.vehiculoService.delete(vehiculo.id).subscribe(
           response=>{
-            this.vehiculos=this.vehiculos.filter(rev=>rev!==vehiculo)
+            this.vehiculosFiltered=this.vehiculos.filter(rev=>rev!==vehiculo)
             swalWithBootstrapButtons.fire(
               'Vehiculo Eliminado!',
               `Vehiculo patente: ${vehiculo.patente}, marca: ${vehiculo.marca}  eliminado con éxito.`,
