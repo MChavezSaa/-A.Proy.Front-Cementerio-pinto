@@ -24,8 +24,9 @@ export class ClienteFormComponent implements OnInit {
       this.formCliente= this.formBuilder.group({
         rut:['',[Validators.required,]],
         nombre:['',[Validators.required]],
-        correo:['',[Validators.required]],
+        apellido:['',[Validators.required]],
         telefono:['',[Validators.required]],
+        direccion:['',[Validators.required]],
       })
   }
 
@@ -62,7 +63,8 @@ export class ClienteFormComponent implements OnInit {
   saveData(){
     console.log(this.formCliente.value);
     this.cliente.nombre=this.formCliente.value.nombre;
-    this.cliente.correo=this.formCliente.value.correo;
+    this.cliente.apellido=this.formCliente.value.apellido;
+    this.cliente.direccion=this.formCliente.value.direccion;
     this.cliente.rut=this.formCliente.value.rut;
     this.cliente.telefono=this.formCliente.value.telefono;
     console.log(this.cliente);

@@ -21,19 +21,23 @@
       </div>
     </div><!--FIN SECCION PARA FILTRAR-->
 
-    <div class="card mb-3"><!--CARD CONTENEDORA DE LA TABLA-->
+    <!--<div class="card mb-3">CARD CONTENEDORA DE LA TABLA-->
       <div class="card-header text-center">
         Lista de clientes
       </div>
-      <div class="card-body">
+     <!-- <div class="card-body">-->
         <div class="table-responsive"><!--INICIO TABLA REVISIONES-->
           <table class="table table-hover">
               <thead class="thead-dark">
                 <tr>
                   <th scope="col">Rut</th>
                   <th scope="col">Nombre</th>
-                  <th scope="col">E-mail</th>
+                  <th scope="col">Apellido</th>
+                  <th scope="col">Dirección</th>
                   <th scope="col">Teléfono</th>
+                  <th scope="col">Cuotas totales</th>
+                  <th scope="col">Cuotas pagadas</th>
+                  <th scope="col">Proximo pago</th>
                   <th scope="col">Editar</th>
                   <th scope="col">Eliminar</th>
                 </tr>
@@ -42,7 +46,8 @@
                 <tr *ngFor="let c of clientesFiltered">
                   <td>{{c.rut}}</td>
                   <td>{{c.nombre}}</td>
-                  <td>{{c.correo}}</td>
+                  <td>{{c.apellido}}</td>
+                  <td>{{c.direccion}}</td>
                   <td>{{c.telefono}}</td>
                   <td><button type="button" name="editar" [routerLink]="['/personal-inicio/clientes-form',c.id]" class="btn btn-primary">editar</button></td>
                   <td><button type="button" name="eliminar" class="btn btn-danger" (click)='delete(c)'>eliminar</button></td>
@@ -50,7 +55,6 @@
               </tbody>
           </table>
         </div><!--FIN TABLA REVISIONES-->  
-      </div>
-    </div><!--FIN CARD CONTENEDORA DE TABLA-->
-  
+      <!--</div>-->
+   <!-- </div>FIN CARD CONTENEDORA DE TABLA-->
   </div><!--FIN CONTENEDOR PRINCIPAL-->

@@ -22,48 +22,29 @@
               <div class="col-6"><!--COL-6-->
                 <h6 class="border-bottom my-2 pb-2">Datos generales</h6>
                 <div class="form-group row">
-                  <label for="inputPatente" class="col-sm-4 col-form-label">Patente</label>
+                  <label for="inputPatente" class="col-sm-4 col-form-label">Nombre</label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control" formControlName="patente" [(ngModel)]="vehiculo.patente" id="inputPatente" placeholder="Patente">
                     <div *ngIf="formVehiculo.get('patente').errors && (formVehiculo.get('patente').touched
                           || formVehiculo.get('patente').dirty)"
-                    class="alert alert-danger">La patente debe ser ingresada
+                    class="alert alert-danger">El nombre debe ser ingresado
                     </div>
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="inputTipo" class="col-sm-4 col-form-label">Tipo de vehículo</label>
+                  <label for="inputTipo" class="col-sm-4 col-form-label">Apellido</label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control" formControlName="tipo_vehiculo" [(ngModel)]="vehiculo.tipo_vehiculo" id="inputTipo" placeholder="Tipo de vehículo">
                     <div *ngIf="formVehiculo.get('tipo_vehiculo').errors && (formVehiculo.get('tipo_vehiculo').touched
                           || formVehiculo.get('tipo_vehiculo').dirty)"
-                    class="alert alert-danger">Debe especificar el tipo de vehiculo
+                    class="alert alert-danger">El apellido debe ser entregado
                     </div>
                   </div>
                 </div>
-                <div class="form-group row">
-                  <label for="inputMarca" class="col-sm-4 col-form-label">Marca</label>
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control" formControlName="marca" [(ngModel)]="vehiculo.marca" id="inputMarca" placeholder="Marca">
-                    <div *ngIf="formVehiculo.get('marca').errors && (formVehiculo.get('marca').touched
-                          || formVehiculo.get('marca').dirty)"
-                    class="alert alert-danger">Debe ingresar la marca
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="inputModelo" class="col-sm-4 col-form-label">Modelo</label>
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control" formControlName="modelo" [(ngModel)]="vehiculo.modelo" id="inputModelo" placeholder="Modelo">
-                    <div *ngIf="formVehiculo.get('modelo').errors && (formVehiculo.get('modelo').touched
-                          || formVehiculo.get('modelo').dirty)"
-                    class="alert alert-danger">Debe ingresar el modelo del vehiculo
-                    </div>
-                  </div>
-                </div>
+               
                 
                 <div class="form-group row">
-                  <div class="col-sm-10">
+                  <div class="col-sm-10"><!--boton ingresar no borrar-->
                     <button type="submit" [disabled]="!formVehiculo.valid" (click)='create()' class="btn btn-primary" *ngIf="!vehiculo.id else elseBlock">Ingresar</button>
                     <ng-template #elseBlock>
                       <button class="btn btn-primary" role="button" (click)='update()' >Editar</button>
@@ -72,47 +53,27 @@
                 </div>
               </div><!--.FIN COL-6-->
               <div class="col-6"><!--COL-6-->
-                  <h6 class="border-bottom my-2 pb-2">Aspectos técnicos</h6>
+                  <h6 class="border-bottom my-2 pb-2">Aspectos generales</h6>
                   <div class="form-group row">
-                    <label for="numeroMotor" class="col-sm-4 col-form-label">Número motor</label>
+                    <label for="FechaDefuncion" class="col-sm-4 col-form-label">Fecha Defunción</label>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control" formControlName="nro_motor" [(ngModel)]="vehiculo.nro_motor" id="nro_motor" placeholder="Número motor">
-                      <div *ngIf="formVehiculo.get('patente').errors && (formVehiculo.get('nro_motor').touched
-                          || formVehiculo.get('nro_motor').dirty)"
-                      class="alert alert-danger">Debe especificar el numero del motor
+                      <input type="date" class="form-control" formControlName="FechaDefuncion" [(ngModel)]="vehiculo.nro_motor" id="FechaDefuncion" placeholder="31/12/2019">
+                      <div *ngIf="formVehiculo.get('FechaDefuncion').errors && (formVehiculo.get('FechaDefuncion').touched
+                          || formVehiculo.get('FechaDefuncion').dirty)"
+                      class="alert alert-danger">Debe ingresar una fecha de defunción.
                       </div>
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="numeroChasis" class="col-sm-4 col-form-label">Número chasis</label>
+                    <label for="numeroChasis" class="col-sm-4 col-form-label">Número de patio</label>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control" formControlName="nro_chasis" [(ngModel)]="vehiculo.nro_chasis" id="nro_chasis" placeholder="Número chasis">
+                      <input type="number" class="form-control" formControlName="nro_chasis" [(ngModel)]="vehiculo.nro_chasis" id="nro_chasis" placeholder="Número de patio">
                       <div *ngIf="formVehiculo.get('patente').errors && (formVehiculo.get('nro_chasis').touched
                           || formVehiculo.get('nro_chasis').dirty)"
-                      class="alert alert-danger">Debe especificar el numero de chasis
+                      class="alert alert-danger">Debe especificar el numero de patio
                       </div>
                     </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="anioVehiculo" class="col-sm-4 col-form-label">Año</label>
-                    <div class="col-sm-8">
-                      <input type="number" class="form-control" formControlName="anio" [(ngModel)]="vehiculo.anio" id="anioVehiculo" placeholder="Año vehiculo">
-                      <div *ngIf="formVehiculo.get('patente').errors && (formVehiculo.get('anio').touched
-                          || formVehiculo.get('anio').dirty)"
-                      class="alert alert-danger">Ingrese un año valido
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="colorVehiculo" class="col-sm-4 col-form-label">Color</label>
-                    <div class="col-sm-8">
-                      <input type="text" class="form-control" formControlName="color" [(ngModel)]="vehiculo.color" id="colorVehiculo" placeholder="Color vehículo">
-                      <div *ngIf="formVehiculo.get('patente').errors && (formVehiculo.get('color').touched
-                          || formVehiculo.get('color').dirty)"
-                      class="alert alert-danger">Especifique el color del vehiculo
-                      </div>
-                    </div>
-                  </div>
+                  </div>              
               </div><!--FIN COL-6-->
             </div><!--FIN ROW-->
 

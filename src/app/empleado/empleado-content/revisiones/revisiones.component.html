@@ -3,11 +3,11 @@
   <nav aria-label="breadcrumb"><!--MIGAS DE PAN-->
     <ol class="breadcrumb bg-white pl-0">
       <li class="breadcrumb-item"><a  [routerLink]="['/personal-inicio']" href="#">personal-inicio</a></li>
-      <li class="breadcrumb-item active" aria-current="page">revisiones</li>
+      <li class="breadcrumb-item active" aria-current="page">terrenos</li>
     </ol>
   </nav><!--FIN MIGAS DE PAN-->
       
-  <h1>Revisiones</h1>
+  <h1>Terrenos</h1>
 
   <div class="row my-3"><!--SECCION PARA FILTRAR-->
     <div class="col-2 my-auto">
@@ -17,27 +17,23 @@
       <input type="text">
     </div>
     <div class="col-6 text-right">
-        <button type="button" name="editar" class="btn btn-primary btn-lg" routerLink="/personal-inicio/revisiones-form">Agregar revisión</button>
+        <button type="button" name="editar" class="btn btn-primary btn-lg" routerLink="/personal-inicio/revisiones-form">Agregar terreno</button>
     </div>
   </div><!--FIN SECCION PARA FILTRAR-->
 
   <div class="card mb-3"><!--CARD CONTENEDORA DE LA TABLA-->
     <div class="card-header text-center">
-      Lista de revisiones
+      Lista de terrenos
     </div>
     <div class="card-body">
       <div class="table-responsive"><!--INICIO TABLA REVISIONES-->
         <table class="table table-hover">
             <thead class="thead-dark">
               <tr>
-                <th scope="col">Id revisión</th>
-                <th scope="col">Patente</th>
-                <th scope="col">Nombre cliente</th>
-                <th scope="col">Fecha</th>
-                <th scope="col">Kilometraje</th>
-                <th scope="col">Gases</th>
-                <th scope="col">Visuales</th>
-                <th scope="col">Alineamiento</th>
+                <th scope="col">Id Terreno</th>
+                <th scope="col">Patio</th>
+                <th scope="col">lote</th>
+                <th scope="col">Orientación</th>            
                 <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
               </tr>
@@ -47,11 +43,7 @@
                 <th scope="row">{{r.idRevision}}</th>
                 <td>{{r.patente}}</td>
                 <td>{{r.nombreCliente}}</td>
-                <td>{{r.fecha}}</td>
-                <td>{{r.kilometraje}}</td>
-                <td>{{r.gases}}</td>
-                <td>{{r.visuales}}</td>
-                <td>{{r.alineamiento}}</td>
+                <td>{{r.fecha}}</td>            
                 <td><button type="button" name="editar" routerLink="'/personal-inicio/revisiones-form',r.idRevision" class="btn btn-primary">editar</button></td>
                 <td><button type="button" name="eliminar" class="btn btn-danger" (click)='delete(r)'>eliminar</button></td>
               </tr>
