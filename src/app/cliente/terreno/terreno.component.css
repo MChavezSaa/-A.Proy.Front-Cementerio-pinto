@@ -1,0 +1,90 @@
+.contenedor{
+    width: 552px;
+    height:848px ;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+ 
+.a1{
+    position: absolute;
+    top: 9%;
+    left: 11%;
+    font-size: 15px;
+}
+.a2{
+    position: absolute;   
+    top: 6%;
+    left: 26%;
+    font-size: 15px;
+}
+.a3{
+    position: absolute;
+    top: 6%;
+    left: 69%;
+    font-size: 12px;
+    font-weight: bold;
+}
+.a4{
+   position: absolute;
+    top: 13%;
+    left: 8%;
+    font-size: 12px;
+    font-weight: bold;
+}
+.a5{
+    position: absolute;
+     top: 13%;
+     left: 35%;
+     font-size: 12px;
+     font-weight: bold;
+ }
+ .a6{
+    position: absolute;
+     top: 15%;
+     left: 75%;
+     font-size: 12px;
+     font-weight: bold;
+ }
+ .a7{
+    position: absolute;
+     top: 21%;
+     left: 10%;
+     font-size: 12px;
+     font-weight: bold;
+ }
+ .a8{
+    position: absolute;
+     top: 21%;
+     left: 35%;
+     font-size: 12px;
+     font-weight: bold;
+ }
+ .a9{
+    position: absolute;
+     top: 21%;
+     left: 75%;
+     font-size: 12px;
+     font-weight: bold;
+ }
+ .a10{
+    position: absolute;
+     top: 27%;
+     left: 10%;
+     font-size: 12px;
+     font-weight: bold;
+ }
+ .a11{
+    position: absolute;
+     top: 27%;
+     left: 35%;
+     font-size: 12px;
+     font-weight: bold;
+ }
+ .a12{
+    position: absolute;
+     top: 27%;
+     left: 77%;
+     font-size: 12px;
+     font-weight: bold;
+ }
