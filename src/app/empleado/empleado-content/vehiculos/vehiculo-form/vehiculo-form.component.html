@@ -1,85 +1,160 @@
-<div class="container"><!--CONTENEDOR PRINCIPAL-->
+<div class="container">
+  <!--CONTENEDOR PRINCIPAL-->
 
-  <nav aria-label="breadcrumb"><!--MIGAS DE PAN-->
+  <nav aria-label="breadcrumb">
+    <!--MIGAS DE PAN-->
     <ol class="breadcrumb bg-white pl-0">
-      <li class="breadcrumb-item"><a  [routerLink]="['/personal-inicio']" href="#">personal-inicio</a></li>
-      <li class="breadcrumb-item"><a  [routerLink]="['/personal-inicio/vehiculos']" href="#">Occisos</a></li>
-      <li class="breadcrumb-item active" aria-current="page">formulario-Occisos</li>
+      <li class="breadcrumb-item"><a [routerLink]="['/personal-inicio']" href="#">Inicio Personal</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/personal-inicio/vehiculos']" href="#">Occisos</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Formulario Occisos</li>
     </ol>
-  </nav><!--FIN MIGAS DE PAN-->
+  </nav>
+  <!--FIN MIGAS DE PAN-->
 
-    <h1 class="my-3">{{titulo}}</h1>
+  <h1 class="my-3">{{titulo}}</h1>
 
-    <div class="card my-5"><!--CARD CONTENEDOR DEL FORMULARIO-->
-      <div class="card-header">
-        Ingrese los datos del occisos
-      </div>
-      <div class="card-body"><!--CARD BODY-->
-  
-          <form [formGroup]="formVehiculo" (ngSubmit)="saveData()" novalidate> <!--FORMULARIO VEHICULO-->
+  <div class="card my-5">
+    <!--CARD CONTENEDOR DEL FORMULARIO-->
+    <div class="card-header">
+      Ingrese los datos del occisos
+    </div>
+    <div class="card-body">
+      <!--CARD BODY-->
 
-            <div class="row"><!--ROW-->
-              <div class="col-6"><!--COL-6-->
-                <h6 class="border-bottom my-2 pb-2">Datos generales</h6>
-                <div class="form-group row">
-                  <label for="inputPatente" class="col-sm-4 col-form-label">Nombre</label>
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control" formControlName="patente" [(ngModel)]="vehiculo.patente" id="inputPatente" placeholder="Patente">
-                    <div *ngIf="formVehiculo.get('patente').errors && (formVehiculo.get('patente').touched
-                          || formVehiculo.get('patente').dirty)"
-                    class="alert alert-danger">El nombre debe ser ingresado
-                    </div>
+      <form [formGroup]="formVehiculo" (ngSubmit)="saveData()" novalidate>
+        <!--FORMULARIO VEHICULO-->
+
+        <div class="row">
+          <!--ROW-->
+
+          <div class="col-6">
+            <!--COL-6-->
+            <h6 class="border-bottom my-2 pb-2">Datos Personales</h6>
+            <div class="form-group row">
+              <label for="inputPatente" class="col-sm-4 col-form-label">Nombres</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" formControlName="patente" [(ngModel)]="vehiculo.patente"
+                  id="inputPatente" placeholder="Nombres">
+                <div *ngIf="formVehiculo.get('patente').errors && (formVehiculo.get('patente').touched
+                          || formVehiculo.get('patente').dirty)" class="alert alert-danger">El nombre debe ser
+                  ingresado
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputTipo" class="col-sm-4 col-form-label">Apellido Paterno</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" formControlName="tipo_vehiculo"
+                  [(ngModel)]="vehiculo.tipo_vehiculo" id="inputTipo" placeholder="Apellido Paterno">
+                <div *ngIf="formVehiculo.get('tipo_vehiculo').errors && (formVehiculo.get('tipo_vehiculo').touched
+                          || formVehiculo.get('tipo_vehiculo').dirty)" class="alert alert-danger">El apellido debe ser
+                  entregado
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputTipo" class="col-sm-4 col-form-label">Apellido Materno</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" formControlName="tipo_vehiculo" [(ngModel)]="vehiculo.tipo_vehiculo"
+                  id="inputTipo" placeholder="Apellido Materno">
+                <div *ngIf="formVehiculo.get('tipo_vehiculo').errors && (formVehiculo.get('tipo_vehiculo').touched
+                                      || formVehiculo.get('tipo_vehiculo').dirty)" class="alert alert-danger">El apellido debe ser
+                  entregado
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="FechaDefuncion" class="col-sm-4 col-form-label">Fecha Defunción</label>
+              <div class="col-sm-8">
+                <input type="date" class="form-control" formControlName="FechaDefuncion"
+                  [(ngModel)]="vehiculo.nro_motor" id="FechaDefuncion" placeholder="31/12/2019">
+                <div *ngIf="formVehiculo.get('FechaDefuncion').errors && (formVehiculo.get('FechaDefuncion').touched
+                                          || formVehiculo.get('FechaDefuncion').dirty)" class="alert alert-danger">Debe
+                  ingresar una
+                  fecha de defunción.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <!--boton ingresar no borrar-->
+                <button type="submit" (click)='create()' class="btn btn-primary">Ingresar</button>
+                <ng-template #elseBlock>
+                  <button class="btn btn-primary" role="button" (click)='update()'>Editar</button>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <!--.FIN COL-6-->
+
+          <div class="col-6">
+            <!--COL-6-->
+            <h6 class="border-bottom my-2 pb-2">Datos Cementerio</h6>
+            <div class="form-group row">
+              <label for="numeroChasis" class="col-sm-4 col-form-label">Número de patio</label>
+              <div class="col-sm-8">
+                <input type="number" class="form-control" formControlName="nro_chasis" [(ngModel)]="vehiculo.nro_chasis"
+                  id="nro_chasis" placeholder="Número de patio">
+                <div *ngIf="formVehiculo.get('patente').errors && (formVehiculo.get('nro_chasis').touched
+                          || formVehiculo.get('nro_chasis').dirty)" class="alert alert-danger">Debe especificar el
+                  numero de patio
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="numeroChasis" class="col-sm-4 col-form-label">Número de Lote</label>
+              <div class="col-sm-8">
+                <input type="number" class="form-control" formControlName="nro_chasis" [(ngModel)]="vehiculo.nro_chasis"
+                  id="nro_chasis" placeholder="Número de lote">
+                <div *ngIf="formVehiculo.get('patente').errors && (formVehiculo.get('nro_chasis').touched
+                           || formVehiculo.get('nro_chasis').dirty)" class="alert alert-danger">Debe especificar el numero de Lote
+                </div>
+              </div>
+            </div>
+            <fieldset class="form-group">
+              <!--Documentacion-->
+              <div class="row">
+                <legend class="col-form-label col-sm-4 pt-0">Documentos a presentar</legend>
+                <div class="col-sm-8">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="gases" formControlName="gases"
+                      id="gases-bueno" value="bueno">
+                    <label class="form-check-label" for="gases-bueno">
+                      Certificado Defunción
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="gases" formControlName="gases"
+                      id="gases-reparacion" value="reparacion">
+                    <label class="form-check-label" for="gases-reparacion">
+                      Fotocopia Carnet
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="gases" formControlName="gases"
+                      id="gases-cambio" value="cambio">
+                    <label class="form-check-label" for="gases-cambio">
+                      Comprobante pago terreno
+                    </label>
                   </div>
                 </div>
-                <div class="form-group row">
-                  <label for="inputTipo" class="col-sm-4 col-form-label">Apellido</label>
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control" formControlName="tipo_vehiculo" [(ngModel)]="vehiculo.tipo_vehiculo" id="inputTipo" placeholder="Tipo de vehículo">
-                    <div *ngIf="formVehiculo.get('tipo_vehiculo').errors && (formVehiculo.get('tipo_vehiculo').touched
-                          || formVehiculo.get('tipo_vehiculo').dirty)"
-                    class="alert alert-danger">El apellido debe ser entregado
-                    </div>
-                  </div>
-                </div>
-               
-                
-                <div class="form-group row">
-                  <div class="col-sm-10"><!--boton ingresar no borrar-->
-                    <button type="submit" [disabled]="!formVehiculo.valid" (click)='create()' class="btn btn-primary" *ngIf="!vehiculo.id else elseBlock">Ingresar</button>
-                    <ng-template #elseBlock>
-                      <button class="btn btn-primary" role="button" (click)='update()' >Editar</button>
-                    </ng-template>
-                  </div>
-                </div>
-              </div><!--.FIN COL-6-->
-              <div class="col-6"><!--COL-6-->
-                  <h6 class="border-bottom my-2 pb-2">Aspectos generales</h6>
-                  <div class="form-group row">
-                    <label for="FechaDefuncion" class="col-sm-4 col-form-label">Fecha Defunción</label>
-                    <div class="col-sm-8">
-                      <input type="date" class="form-control" formControlName="FechaDefuncion" [(ngModel)]="vehiculo.nro_motor" id="FechaDefuncion" placeholder="31/12/2019">
-                      <div *ngIf="formVehiculo.get('FechaDefuncion').errors && (formVehiculo.get('FechaDefuncion').touched
-                          || formVehiculo.get('FechaDefuncion').dirty)"
-                      class="alert alert-danger">Debe ingresar una fecha de defunción.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="numeroChasis" class="col-sm-4 col-form-label">Número de patio</label>
-                    <div class="col-sm-8">
-                      <input type="number" class="form-control" formControlName="nro_chasis" [(ngModel)]="vehiculo.nro_chasis" id="nro_chasis" placeholder="Número de patio">
-                      <div *ngIf="formVehiculo.get('patente').errors && (formVehiculo.get('nro_chasis').touched
-                          || formVehiculo.get('nro_chasis').dirty)"
-                      class="alert alert-danger">Debe especificar el numero de patio
-                      </div>
-                    </div>
-                  </div>              
-              </div><!--FIN COL-6-->
-            </div><!--FIN ROW-->
+              </div>
+            </fieldset>
+          </div>
+          <!--FIN COL-6-->
 
-          </form><!--FIN FORMULARIO VEHICULO-->
-  
-      </div><!--FIN CARD BODY-->
-    </div><!--FIN CARD CONTENEDORA FORMULARIO-->
+        </div>
+        <!--FIN ROW-->
 
-  </div><!--FIN CONTENEDOR PRINCIPAL-->
+      </form>
+      <!--FIN FORMULARIO VEHICULO-->
+
+    </div>
+    <!--FIN CARD BODY-->
+  </div>
+  <!--FIN CARD CONTENEDORA FORMULARIO-->
+
+</div>
+<!--FIN CONTENEDOR PRINCIPAL-->

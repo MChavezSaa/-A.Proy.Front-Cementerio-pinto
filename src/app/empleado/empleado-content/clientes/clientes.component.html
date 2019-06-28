@@ -2,8 +2,8 @@
 
   <nav aria-label="breadcrumb"><!--MIGAS DE PAN-->
     <ol class="breadcrumb bg-white pl-0">
-      <li class="breadcrumb-item"><a  [routerLink]="['/personal-inicio']" href="#">personal-inicio</a></li>
-      <li class="breadcrumb-item active" aria-current="page">clientes</li>
+      <li class="breadcrumb-item"><a  [routerLink]="['/personal-inicio']" href="#">Inicio Personal</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Clientes</li>
     </ol>
   </nav><!--FIN MIGAS DE PAN-->
 
@@ -17,17 +17,17 @@
         <input type="text" [(ngModel)]="listFilter">
       </div>
       <div class="col-6 text-right">
-          <button type="button" name="editar" class="btn btn-primary btn-lg" routerLink="/personal-inicio/clientes-form">Agregar cliente</button>
+          <button type="button" name="editar" class="btn btn-primary btn-lg" routerLink="/personal-inicio/clientes-form">Agregar Cliente</button>
       </div>
     </div><!--FIN SECCION PARA FILTRAR-->
 
     <!--<div class="card mb-3">CARD CONTENEDORA DE LA TABLA-->
       <div class="card-header text-center">
-        Lista de clientes
+        Listado de Clientes
       </div>
      <!-- <div class="card-body">-->
         <div class="table-responsive"><!--INICIO TABLA REVISIONES-->
-          <table class="table table-hover">
+          <table class="table table-hover" style="text-align: center">
               <thead class="thead-dark">
                 <tr>
                   <th scope="col">Rut</th>
@@ -43,7 +43,44 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let c of clientesFiltered">
+                <tr>
+                  <th>14772453-3</th>
+                  <th>Carla</th>
+                  <th>Castillo</th>
+                  <th>Sgto Aldea #821</th>
+                  <th>965235781</th>
+                  <th>6</th>
+                  <th>4</th>
+                  <th>15-07-2019</th>
+                  <th><button class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button> </th>
+                  <th><button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button> </th>
+                </tr>
+                <tr>
+                  <th>10322070-2</th>
+                  <th>Mercedes</th>
+                  <th>Peréz</th>
+                  <th>Los Heroes #521</th>
+                  <th>943277509</th>
+                  <th>6</th>
+                  <th>2</th>
+                  <th>20-07-2019</th>
+                  <th><button class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button> </th>
+                  <th><button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button> </th>
+                </tr>
+                <tr>
+                  <th>11447820-0</th>
+                  <th>Patricio</th>
+                  <th>Cordero</th>
+                  <th>Carlos Condell #341</th>
+                  <th>992100432</th>
+                  <th>3</th>
+                  <th>2</th>
+                  <th>05-07-2019</th>
+                  <th><button class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button> </th>
+                  <th><button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button> </th>
+                </tr>
+
+                <!--<tr *ngFor="let c of clientesFiltered">
                   <td>{{c.rut}}</td>
                   <td>{{c.nombre}}</td>
                   <td>{{c.apellido}}</td>
@@ -51,7 +88,7 @@
                   <td>{{c.telefono}}</td>
                   <td><button type="button" name="editar" [routerLink]="['/personal-inicio/clientes-form',c.id]" class="btn btn-primary">editar</button></td>
                   <td><button type="button" name="eliminar" class="btn btn-danger" (click)='delete(c)'>eliminar</button></td>
-                </tr>
+                </tr>-->
               </tbody>
           </table>
         </div><!--FIN TABLA REVISIONES-->  

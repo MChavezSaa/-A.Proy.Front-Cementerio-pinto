@@ -2,8 +2,8 @@
       
   <nav aria-label="breadcrumb"><!--MIGAS DE PAN-->
     <ol class="breadcrumb bg-white pl-0">
-      <li class="breadcrumb-item"><a  [routerLink]="['/personal-inicio']" href="#">personal-inicio</a></li>
-      <li class="breadcrumb-item active" aria-current="page">terrenos</li>
+      <li class="breadcrumb-item"><a  [routerLink]="['/personal-inicio']" href="#">Inicio Personal</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Terrenos</li>
     </ol>
   </nav><!--FIN MIGAS DE PAN-->
       
@@ -23,30 +23,62 @@
 
   <div class="card mb-3"><!--CARD CONTENEDORA DE LA TABLA-->
     <div class="card-header text-center">
-      Lista de terrenos
+      Lista de Terrenos
     </div>
     <div class="card-body">
-      <div class="table-responsive"><!--INICIO TABLA REVISIONES-->
-        <table class="table table-hover">
+      <div class="table-responsive"><!--INICIO TABLA TERRENOS-->
+        <table class="table table-hover" style="text-align: center">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">Id Terreno</th>
+                <th scope="col">Nombre Dueño</th>
+                <th scope="col">Apellido Dueño</th>
                 <th scope="col">Patio</th>
-                <th scope="col">lote</th>
+                <th scope="col">Lote</th>
                 <th scope="col">Orientación</th>            
                 <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let r of revisiones">
+              <tr>
+                <th>00123</th>
+                <th>Javier</th>
+                <th>Coloma</th>
+                <th> 5</th>
+                <th> 3</th>
+                <th> Norte</th>
+                <th> <button class="btn btn-warning" ><i class="fas fa-pencil-alt"></i></button> </th>
+                <th> <button class="btn btn-danger" ><i class="fas fa-trash-alt"></i></button> </th>
+              </tr>
+              <tr>
+                <th>00054</th>
+                <th>Marta</th>
+                <th>Sandoval</th>
+                <th> 2</th>
+                <th> 1</th>
+                <th> Oriente</th>
+                <th> <button class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button> </th>
+                <th> <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button> </th>
+              </tr>
+              <tr>
+                <th>00110</th>
+                <th>Felipe</th>
+                <th>Santos</th>
+                <th> 3</th>
+                <th> 3</th>
+                <th> Sur</th>
+                <th> <button class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button> </th>
+                <th> <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button> </th>
+              </tr>
+            <!-- <tr *ngFor="let r of revisiones">
                 <th scope="row">{{r.idRevision}}</th>
                 <td>{{r.patente}}</td>
                 <td>{{r.nombreCliente}}</td>
                 <td>{{r.fecha}}</td>            
                 <td><button type="button" name="editar" routerLink="'/personal-inicio/revisiones-form',r.idRevision" class="btn btn-primary">editar</button></td>
                 <td><button type="button" name="eliminar" class="btn btn-danger" (click)='delete(r)'>eliminar</button></td>
-              </tr>
+              </tr>-->
             </tbody>
         </table>
       </div><!--FIN TABLA REVISIONES-->  
