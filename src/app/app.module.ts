@@ -59,10 +59,6 @@ const routes:Routes=[
         component:RevisionesComponent
       },
       {
-        path:'vehiculos',
-        component:VehiculosComponent
-      },
-      {
         path:'clientes',
         component:ClientesComponent
       },
@@ -90,6 +86,10 @@ const routes:Routes=[
         path:'vehiculos-form/:id',
         component:VehiculoFormComponent
       },
+      {
+        path:'vehiculos',
+        component:VehiculosComponent
+      }
     
     ]
   }

@@ -38,7 +38,7 @@ export class RevisionService {
       map((response:any) => response.revision as Revision),
       catchError(e=>{
         console.error(e.error.mensaje);
-        Swal.fire('Error al crear la revision', e.error.mensaje,'error');
+        Swal.fire('Error al crear el terreno', e.error.mensaje,'error');
         return throwError(e);
       })
     );
@@ -48,7 +48,7 @@ export class RevisionService {
     return this.http.put<any>(`${this.urlEndPoint}/${revision.idRevision}`,revision,{headers:this.httpHeaders}).pipe(
       catchError(e=>{
         console.error(e.error.mensaje);
-        Swal.fire('Error al editar la revision', e.error.mensaje,'error');
+        Swal.fire('Error al editar el terreno', e.error.mensaje,'error');
         return throwError(e);
       })
     );
@@ -59,7 +59,7 @@ export class RevisionService {
     return this.http.delete<Revision>(`${this.urlEndPoint}/${id}`,{headers:this.httpHeaders}).pipe(
       catchError(e=>{
         console.error(e.error.mensaje);
-        Swal.fire('Error al eliminar la revision', e.error.mensaje,'error');
+        Swal.fire('Error al eliminar el terreno', e.error.mensaje,'error');
         return throwError(e);
       })
     );

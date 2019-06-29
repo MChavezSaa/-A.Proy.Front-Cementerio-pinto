@@ -55,8 +55,7 @@
             
             <div class="form-group row">
               <div class="col-sm-10">
-                <button class="btn btn-primary" type="submit" role="button" (click)='create()'
-                  [disabled]="!formRevision.valid" *ngIf="!revision.idRevision else elseBlock">Guardar</button>
+                  <!--[disabled]="!formRevision.valid" *ngIf="!revision.idRevision else elseBlock"s-->
                 <!--elseBlock posiciona otro template en caso de que !clietne.id, para utilizar solo 1 boton en el form-->
                 <ng-template #elseBlock>
                   <button class="btn btn-primary" role="button" (click)='update()'>Editar</button>
@@ -89,7 +88,7 @@
                   placeholder="Número de Lote">
                 <div *ngIf="formRevision.get('kilometraje').errors && (formRevision.get('kilometraje').touched
                           || formRevision.get('kilometraje').dirty)" class="alert alert-danger">Debe ingresar el
-                  kilometraje
+                  N° de lote
                 </div>
               </div>
             </div>
@@ -98,13 +97,17 @@
               <div class="col-sm-8">
                 <input type="text" class="form-control" id="kilometraje" formControlName="kilometraje" placeholder="Orientación">
                 <div *ngIf="formRevision.get('kilometraje').errors && (formRevision.get('kilometraje').touched
-                                      || formRevision.get('kilometraje').dirty)" class="alert alert-danger">Debe ingresar el
-                  kilometraje
+                                      || formRevision.get('kilometraje').dirty)" class="alert alert-danger">Debe ingresar la
+                  orientación
                 </div>
               </div>
             </div>
-           
-
+            <div align="right">
+            <button class="btn btn-primary" type="submit" role="button" (click)='create()'
+            >Guardar</button>&nbsp;                  
+            <button class="btn btn-danger"type="" role="button"[routerLink]="['/personal-inicio/revisiones']"
+            >Cancelar</button>
+          </div>
 
 
           </div>

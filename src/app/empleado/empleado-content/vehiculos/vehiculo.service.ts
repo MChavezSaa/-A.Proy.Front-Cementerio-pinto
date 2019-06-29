@@ -41,7 +41,7 @@ export class VehiculoService {
       map((response:any) => response.vehiculo as Vehiculo),
       catchError(e=>{
         console.error(e.error.mensaje);
-        Swal.fire('Error al crear el vehiculo', e.error.mensaje,'error');
+        Swal.fire('Error al crear el Occiso', e.error.mensaje,'error');
         return throwError(e);
       })
     );
@@ -51,7 +51,7 @@ export class VehiculoService {
     return this.http.put<any>(`${this.urlEndPoint2}${id}`,vehiculo,{headers:this.httpHeaders}).pipe(
       catchError(e=>{
         console.error(e.error.mensaje);
-        Swal.fire('Error al editar el vehiculo', e.error.mensaje,'error');
+        Swal.fire('Error al editar el Occiso', e.error.mensaje,'error');
         return throwError(e);
       })
     );
@@ -61,7 +61,7 @@ export class VehiculoService {
     return this.http.delete<Vehiculo>(`${this.urlEndPoint3}${id}`,{headers:this.httpHeaders}).pipe(
       catchError(e=>{
         console.error(e.error.mensaje);
-        Swal.fire('Error al eliminar el vehiculo', e.error.mensaje,'error');
+        Swal.fire('Error al eliminar el Occiso', e.error.mensaje,'error');
         return throwError(e);
       })
     );
