@@ -24,6 +24,7 @@ import { RevisionFormComponent } from './empleado/empleado-content/revisiones/re
 import { VehiculoFormComponent } from './empleado/empleado-content/vehiculos/vehiculo-form/vehiculo-form.component';
 import { ClienteService } from './empleado/empleado-content/clientes/cliente.service';
 import { TerrenoComponent } from './cliente/terreno/terreno.component';
+import { ClientForm2Component } from './empleado/empleado-content/clientes/client-form2/client-form2.component';
 
 const routes:Routes=[
   {path:'',redirectTo:'/inicio',pathMatch:'full'},   //como pagina de inicio se debe dejar la vista para los clientes
@@ -67,6 +68,10 @@ const routes:Routes=[
         component:ClienteFormComponent
       },
       {
+        path:'clientes-form2',
+        component:ClientForm2Component
+      },
+      {
         path:'clientes-form/:id',
         component:ClienteFormComponent
       },
@@ -89,8 +94,11 @@ const routes:Routes=[
       {
         path:'vehiculos',
         component:VehiculosComponent
+      },
+      {
+        path:'terreno',
+        component:TerrenoComponent
       }
-    
     ]
   }
 ];
@@ -115,7 +123,8 @@ const routes:Routes=[
     ClienteFormComponent,
     RevisionFormComponent,
     VehiculoFormComponent,
-    TerrenoComponent
+    TerrenoComponent,
+    ClientForm2Component
   ],
   imports: [
     BrowserModule,
